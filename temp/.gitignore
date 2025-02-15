@@ -1,0 +1,59 @@
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log
+yarn-debug.log
+pnpm-debug.log
+lerna-debug.log
+.log/
+
+# Database files
+*.sqlite
+*.sqlite3
+dump.rdb
+*.mongo
+data/db/
+
+# Cache files
+.cache
+.cache-loader
+.npm/
+.pnp
+.pnp.js
+
+# Build files
+dist/
+build/
+coverage/
+.next/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Prisma & Mongoose
+prisma/migrations/
+prisma/dev.db
+prisma/dev.db-journal
+
+# Uploads (if handling file uploads)
+uploads/
+
+# Docker
+docker-compose.override.yml

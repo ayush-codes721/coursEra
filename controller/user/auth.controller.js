@@ -5,6 +5,8 @@ export class AuthController {
         try {
             const { username, name, email, password, interests } = req.body;
 
+            console.log("registering user ..");
+            
 
             const user = await AuthService.signup({ username, name, email, password, role:"user", interests });
 

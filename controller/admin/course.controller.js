@@ -9,6 +9,8 @@ export class CourseAdminController {
 
             const { title, description, price, category } = req.body;
             const instructorId = req?.user._id
+            console.log("creating course ...");
+            
             let thumbnail;
 
             if (req.file) {

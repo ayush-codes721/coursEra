@@ -2,6 +2,7 @@ import { User } from "../model/user.model.js";
 import { JwtService } from "../service/jwt.service.js";
 import { ApiError } from "../utils/apiError.js";
 
+//AuthMiddleware-Service
 export class AuthMiddleware {
 
     static async isUserAuthenticated(req, res, next) {

@@ -9,7 +9,7 @@ export class CourseAdminController {
 
             const { title, description, price, category } = req.body;
             const instructorId = req?.user._id
-            console.log("creating new course ...");
+            console.log("creating  course ...");
             
             let thumbnail;
 

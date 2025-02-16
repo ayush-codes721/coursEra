@@ -7,5 +7,6 @@ import { LessonController } from "../../controller/admin/lesson.controller.js";
 const adminLessonRouter = Router();
 
 adminLessonRouter.post('/create-lesson',upldaod.single('lesson'),LessonController.addlesson)
+adminLessonRouter.post('/bulk/create-lesson',LessonController.addlessonsBulk);
 
 export {adminLessonRouter}

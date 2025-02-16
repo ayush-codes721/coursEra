@@ -35,7 +35,7 @@ export class LessonService {
             throw new ApiError(400, "This lesson already exists for this course");
         }
 
-        return await Lesson.create({
+        const newlesson= await Lesson.create({
             title,
             lesson_no,
             description,
@@ -44,7 +44,41 @@ export class LessonService {
             duration,
             courseId
         });
+        course.content.push(newlesson._id);
+        await course.save();
+
+        return newlesson;
     }
 
+    static async addlessonBulk({lessons,courseId,instructorId}){
+
+        if (!Array.isArray(lessons)) {
+            throw new ApiError(400,"Invalid input, expected an array of lessons")     
+        }
+       
+        const course = await Course.findById(courseId);
+        if (!course) {
+            throw new ApiError(404, "Course not found");
+        }
+
+        if (course.instructorId.toString() !== instructorId.toString()) {
+            throw new ApiError(403, "Unauthorized access");
+        }
+
+        lessons=lessons.map(lesson=>{
+            return {...lesson,courseId,duration:0,videoUrl:"no video content"}
+        })
+
+        const newlessons= await Lesson.insertMany(lessons);
+
+        course.content.push(...newlessons);
+        await course.save();
+
+
+        return newlessons;
+
+    
+    }
+    
 
 }

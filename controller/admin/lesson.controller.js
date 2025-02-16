@@ -1,3 +1,4 @@
+import { Lesson } from "../../model/lesson.model.js";
 import CloudinaryService from "../../service/cloudinary.service.js";
 import { LessonService } from "../../service/lesson.service.js";
 
@@ -57,11 +58,34 @@ export class LessonController {
     }
 
     static async addlessonsBulk(req, res) {
+        try {
+            const { lessons, courseId } = req.body;
+            const instructorId = req.user._id;
+
+            const response = await LessonService.addlessonBulk({ lessons, courseId, instructorId });
+            return res.status(200).json({
+                success: true,
+                message: "lessons added",
+                data: response
+
+            });
+
+        } catch (error) {
+            return res.status(error.statusCode || 500).json({
+                success: false,
+                message: error.message || "Internal Server Error"
+            });
+
+
+        }
+
+
 
 
     }
 
     static async updateLesson(req, res) {
+
 
     }
     static async deleteLesson(req, res) {

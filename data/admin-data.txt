@@ -1,0 +1,14 @@
+{
+    "username": "ayush",
+    "email": "ayushadmin@123",
+    "password": "1234",
+    "interests": ["Programming", "AI", "Blockchain"]
+    }
+
+    {
+    "username": "john_doe",
+    "email": "john.doe@example.com",
+    "password": "hashedpassword123",
+    "interests": ["Programming", "AI", "Blockchain"]
+    
+    }

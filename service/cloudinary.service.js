@@ -19,7 +19,8 @@ class CloudinaryService {
       if (!filePath) throw new Error("File path is required");
 
       const result = await cloudinary.uploader.upload(filePath, {
-        folder: "coursera", 
+        folder: "coursera",
+        resource_type: "image"
       });
 
       // Delete the local file after upload
@@ -30,6 +31,49 @@ class CloudinaryService {
       console.error("Cloudinary Upload Error:", error);
       throw new Error("File upload failed");
     }
+  }
+
+  async uploadVideo(filePath) {
+
+    try {
+
+      if (!filePath) throw new Error("File path is required");
+
+      const result = await cloudinary.uploader.upload(filePath, {
+        folder: "coursera",
+        resource_type: "video"
+
+      })
+
+      fs.unlinkSync(filePath);
+
+      // Fetch video metadata to get the duration
+      const videoDetails = await cloudinary.api.resource(result.public_id, {
+        resource_type: "video"
+      })
+
+
+      //some issues here for duration need to fix it :todo
+
+     const durationInSeconds = videoDetails?.duration ?? 0; 
+     const durationInMinutes = parseFloat((durationInSeconds / 60).toFixed(2)); 
+
+      return {
+          videoUrl: result.secure_url,
+          duration: parseFloat(durationInMinutes), 
+      };
+
+      // return {
+      //   videoUrl: result.secure_url,
+      //   duration: videoDetails.duration, // Duration in seconds
+      // };
+
+    } catch (error) {
+      console.error("Cloudinary Upload Error:", error);
+      throw new Error("File upload failed");
+
+    }
+
   }
 }
 

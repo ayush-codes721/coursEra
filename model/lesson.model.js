@@ -6,25 +6,30 @@ const lessonSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  lesson_no: {
+    type: Number,
+    required: true,
+
+  },
   description: {
     type: String,
     required: true,
   },
   content: {
-    type: String,  
+    type: String,
     required: true,
   },
   videoUrl: {
-    type: String,  
-    required: false,  
+    type: String,
+    required: false,
   },
   duration: {
-    type: Number, 
+    type: Number,
     required: true,
   },
   courseId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Course', 
+    ref: 'Course',
     required: true,
   },
 }, { timestamps: true, collection: "lessons" });
